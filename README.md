@@ -3,6 +3,9 @@
 Ever wanted to compile/build a kernel ? But don't want to learn all the commands ?
 Then here comes a tool for you "Kernel Buildinator". Now, no need to learn any commands.
 
+## Requirements
+    Linux
+
 ## How to use
 
 ### Download tools
@@ -30,7 +33,7 @@ check setup.sh for more info
 
 ## Credits
 
-@osm0sis for AnyKernel
-@rebenok90x for https://github.com/rebenok90x/kernel-builder
+- @osm0sis for AnyKernel
+- @rebenok90x for https://github.com/rebenok90x/kernel-builder
 
 ### Help & Pull Requests are always Welcome

@@ -5,13 +5,20 @@
 clear
 
 # Source vars.conf to get LOGO
-source $sdir/vars.conf
+source $PWD/vars.conf
 
 # Save and export current working DIR to $sdir
 sdir=$(pwd)
 export sdir
 
+# Check OS type & Distro. Then save it as a variable
+distro=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release)
+
 logo
+
+if [[ "$distro" == "arch" ]]; then
+       echo "Arch Linux Detected"
+fi
 
 # Ask User For Input
 echo -e "\e[1;34m Should I download and install required packages (y/n) ?\e[0m"
