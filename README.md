@@ -18,6 +18,10 @@ cd Kernel_Buildinator
 ```
     bash setup.sh
 ```
+```
+Note: If you select not to clone kernel source then copy/move your local kernel sources to "Kernel_buildinator/kernel"
+      Toolchains & Anykernel will only be cloned if "Kernel_buildinator/kernel" exists
+```
 
 ### Things you must know before starting
 

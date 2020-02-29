@@ -34,7 +34,7 @@ read -r set_ccache
 sed -i -e"s/^set_ccache=.*/set_ccache=$set_ccache/g" "$sdir/vars.conf"
 clear
 logo
-echo -e "\e[1;34m Should I Clone Kernel Source & Toolchains (y/n) ?\e[0m"
+echo -e "\e[1;34m Should I Clone Kernel Source (y/n) ?\e[0m"
 read -r clone
 sed -i -e"s/^clone=.*/clone=$clone/g" "$sdir/vars.conf"
 clear
@@ -116,9 +116,9 @@ if [ "$use_clang" == "y" ]
 	# Execute the next script
 	. "$sdir"/ccache.sh
 
-        elif [ "$clone" == "n" ]
+        elif [ "$use_clang" == "n" ]
         then
-                echo " "
+                sed -i -e"s/^use_clang=.*/use_clang=$use_clang/g" "$sdir/vars.conf"
 		. "$sdir"/ccache.sh
 else
         echo "Please enter y or n only."

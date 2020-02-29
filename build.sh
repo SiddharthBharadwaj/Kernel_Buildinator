@@ -14,7 +14,7 @@ echo -e "\e[1;32m ***Building Kernel..***\e[0m"
 if [ "$use_clang" == y ]
 then
 export KBUILD_BUILD_USER="$kbuild_u"
-export KBUILD_BUILD_HOST="kbuild_h"
+export KBUILD_BUILD_HOST="$kbuild_h"
 export ARCH="$archf"
 export SUBARCH="$sarchf"
 export CFLAGS="-w"
@@ -29,7 +29,7 @@ function check {
        then
          upload
        else
-         echo "Build failed"
+         echo -e "\e[0;31m Build failed\e[0m"
         fi 
 }
 #------------------------------------------#
@@ -37,8 +37,8 @@ function upload {
 mv $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
 cd AnyKernel3
 zip -r9 $ZIPNAME * -x .git README.md
-echo "Build Completed Succesfully"
-echo "Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
+echo -e "\e[1;32m Build Completed Succesfully\e[0m"
+echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
 }
 #-------------------------------------------#
 make clean && make mrproper O=out
@@ -72,7 +72,7 @@ function check {
        then
          upload
        else
-         echo "Build failed"
+         echo -e "\e[0;31m Build failed\e[0m"
         fi
 }
 #------------------------------------------#
@@ -80,9 +80,8 @@ function upload {
 mv $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
 cd AnyKernel3
 zip -r9 $ZIPNAME * -x .git README.md
-echo "Build Completed Succesfully"
-echo "Build Completed Succesfully"
-echo "Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
+echo -e "\e[1;32m Build Completed Succesfully\e[0m"
+echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
 }
 #-------------------------------------------#
 make clean && make mrproper O=out
