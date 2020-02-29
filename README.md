@@ -19,8 +19,11 @@ cd Kernel_Buildinator
     bash setup.sh
 ```
 ```
-Note: If you select not to clone kernel source then copy/move your local kernel sources to "Kernel_buildinator/kernel"
-      Toolchains & Anykernel will only be cloned if "Kernel_buildinator/kernel" exists
+Notes:
+- If you select not to clone kernel source then copy/move your local kernel sources to "Kernel_buildinator/kernel"
+- Toolchains & Anykernel will only be cloned if "Kernel_buildinator/kernel" exists
+- If your device is having block different then "/dev/block/bootdevice/by-name/boot", then you have to manually 
+  change it in vars.conf (Only If You Are Going To Use AnyKernel3)
 ```
 
 ### Things you must know before starting
