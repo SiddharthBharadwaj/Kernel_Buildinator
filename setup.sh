@@ -55,8 +55,25 @@ fi
 clear
 logo
 echo -e "\e[1;32m Kernel Variables\e[0m"
-read -p "Enter Kernel ZIP name: " ZIPNAME
-sed -i -e"s/^ZIPNAME=.*/ZIPNAME=$ZIPNAME/g" "$sdir/vars.conf"
+read -p "Create AnyKernel3 Flashable Kernel Zip (y/n) ?" ak
+sed -i -e"s/^ak=.*/ak=$ak/g" "$sdir/vars.conf"
+clear
+logo
+if [ "$ak" == "y" ]
+        then
+                read -p "Enter Kernel ZIP name: " ZIPNAME
+		sed -i -e"s/^ZIPNAME=.*/ZIPNAME=$ZIPNAME/g" "$sdir/vars.conf"
+		read -p "Enter kernel.string (example: KernelName by YourName)" kstring
+                sed -i -e"s/^kstring=.*/kstring=$kstring/g" "$sdir/vars.conf"
+		read -p "Enter Device Name (For device check)" dname
+		sed -i -e"s/^dname=.*/dname=$dname/g" "$sdir/vars.conf"
+        elif [ "$ak" == "n" ]
+        then
+                echo " "
+else
+        echo "Please enter y or n only."
+        return 1
+fi
 clear
 logo
 read -p "Enter KBUILD_BUILD_USER name: " kbuild_u
