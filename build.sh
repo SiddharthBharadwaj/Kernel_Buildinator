@@ -100,8 +100,7 @@ function check {
 function upload {
 sed -i "s/^kernel.string=.*/kernel.string=$kstring/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
 sed -i "s/^device.name1=.*/device.name1=$dname/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/^device.name1.*supported.versions//' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s|^block=.*|block=/dev/block/bootdevice/by-name/boot;|g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
+sed -i "s/^block=.*/block=$block/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
 sed -i "s/^supported.versions=.*/supported.versions=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
 sed -i "s/^supported.patchlevels=.*/supported.patchlevels=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
 sed -i '/# begin ramdisk changes/,/# end ramdisk changes/d' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
