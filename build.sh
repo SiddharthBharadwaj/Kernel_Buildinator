@@ -17,8 +17,6 @@ export KBUILD_BUILD_USER="$kbuild_u"
 export KBUILD_BUILD_HOST="$kbuild_h"
 export ARCH="$archf"
 export SUBARCH="$sarchf"
-export CFLAGS="-w"
-export CXXFLAGS="-w"
 export CROSS_COMPILE=$KERNEL_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 export CROSS_COMPILE_ARM32=$KERNEL_DIR/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 PATH=$KERNEL_DIR/clang-llvm/bin/:$KERNEL_DIR/aarch64-linux-android-4.9/bin/:$PATH
@@ -64,11 +62,7 @@ function ak3 {
 make clean && make mrproper O=out
 BUILD_START=$(date +"%s")
 make  O=out $defconfig_name
-make -j$(nproc --all) O=out \
-CROSS_COMPILE=aarch64-linux-android- 2>&1 | tee error.log \
-CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-CC=clang \
-CLANG_TRIPLE=aarch64-linux-gnu- 2>&1| tee error.log
+make -j$(nproc --all) CC=$KERNEL_DIR/clang-llvm/bin/clang-11 CLANG_TRIPLE=aarch64-linux-gnu- O=out
 #------#
 BUILD_END=$(date +"%s")
 DIFF=$((BUILD_END - BUILD_START))
@@ -82,8 +76,6 @@ export KBUILD_BUILD_USER="$kbuild_u"
 export KBUILD_BUILD_HOST="kbuild_h"
 export ARCH="$archf"
 export SUBARCH="$sarchf"
-export CFLAGS="-w"
-export CXXFLAGS="-w"
 export CROSS_COMPILE=$KERNEL_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 export CROSS_COMPILE_ARM32=$KERNEL_DIR/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 #-----------------------------------------#
