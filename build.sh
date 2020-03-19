@@ -31,28 +31,12 @@ function check {
        echo -e "\e[0;31m Build failed\e[0m"
    fi
 }
-#------------------------------------------#
-function upload {
-sed -i "s/^kernel.string=.*/kernel.string=$kstring/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^device.name1=.*/device.name1=$dname/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^block.*/block=$block;/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^supported.versions=.*/supported.versions=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^supported.patchlevels=.*/supported.patchlevels=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i '/# begin ramdisk changes/,/# end ramdisk changes/d' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/toro//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/plus//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/tuna//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-mv $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
-cd AnyKernel3
-zip -r9 $ZIPNAME * -x .git README.md
-echo -e "\e[1;32m Made Flashable ZIP Succesfully\e[0m"
-}
-#-------------------------------------------#
 #-----------------------------------------#
 function ak3 {
    if [ "$ak" == "y" ]
        then
-	check && upload
+	check
+  . $sdir/anykernel.sh
    else
         check
    fi
@@ -88,28 +72,12 @@ function check {
          echo -e "\e[0;31m Build failed\e[0m"
         fi
 }
-#------------------------------------------#
-function upload {
-sed -i "s/^kernel.string=.*/kernel.string=$kstring/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^device.name1=.*/device.name1=$dname/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^block=.*/block=$block/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^supported.versions=.*/supported.versions=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i "s/^supported.patchlevels=.*/supported.patchlevels=/g" "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i '/# begin ramdisk changes/,/# end ramdisk changes/d' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/toro//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/plus//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-sed -i 's/tuna//g' "$KERNEL_DIR/AnyKernel3/anykernel.sh"
-mv $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
-cd AnyKernel3
-zip -r9 $ZIPNAME * -x .git README.md
-echo -e "\e[1;32m Made Flashable ZIP Succesfully\e[0m"
-}
-#-------------------------------------------#
 #-----------------------------------------#
 function ak3 {
    if [ "$ak" == "y" ]
        then
-        check && upload
+        check
+        . $sdir/anykernel.sh
    else
         check
    fi
