@@ -23,7 +23,7 @@ PATH=$KERNEL_DIR/clang-llvm/bin/:$KERNEL_DIR/aarch64-linux-android-4.9/bin/:$PAT
 export PATH
 #-----------------------------------------#
 function check {
-   if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/Image.gz-dtb ]
+   if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
         echo -e "\e[1;32m Build Completed Succesfully\e[0m"
 	echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
@@ -33,7 +33,7 @@ function check {
 }
 #-----------------------------------------#
 function ak3 {
-   if [ "$ak" == "y" ]
+   if [ "$ak" == "y" ] && [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
 	check
   . $sdir/anykernel.sh
@@ -46,7 +46,7 @@ function ak3 {
 make clean && make mrproper O=out
 BUILD_START=$(date +"%s")
 make  O=out $defconfig_name
-make -j$(nproc --all) CC=$KERNEL_DIR/clang-llvm/bin/clang-11 CLANG_TRIPLE=aarch64-linux-gnu- O=out
+make -j$(nproc --all) CC=$KERNEL_DIR/clang-llvm/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- O=out
 #------#
 BUILD_END=$(date +"%s")
 DIFF=$((BUILD_END - BUILD_START))
@@ -64,7 +64,7 @@ export CROSS_COMPILE=$KERNEL_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-and
 export CROSS_COMPILE_ARM32=$KERNEL_DIR/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 #-----------------------------------------#
 function check {
-   if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/Image.gz-dtb ]
+   if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
          echo -e "\e[1;32m Build Completed Succesfully\e[0m"
 	echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
@@ -74,7 +74,7 @@ function check {
 }
 #-----------------------------------------#
 function ak3 {
-   if [ "$ak" == "y" ]
+   if [ "$ak" == "y" ] && [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
         check
         . $sdir/anykernel.sh

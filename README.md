@@ -13,8 +13,8 @@ Then here comes a tool for you "Kernel Buildinator". Now, no need to learn any c
 git clone https://github.com/SiddharthBharadwaj/Kernel_Buildinator.git
 cd Kernel_Buildinator
 ```
-
 ### For setting up requirement and starting the build
+
 ```
     bash setup.sh
 ```
@@ -22,8 +22,6 @@ cd Kernel_Buildinator
 Notes:
 - If you select not to clone kernel source then copy/move your local kernel sources to "Kernel_buildinator/kernel"
 - Toolchains & Anykernel will only be cloned if "Kernel_buildinator/kernel" exists
-- If your device is having block different then "/dev/block/bootdevice/by-name/boot", then you have to manually 
-  change it in vars.conf (Only If You Are Going To Use AnyKernel3)
 ```
 
 ### Things you must know before starting
@@ -35,12 +33,15 @@ check setup.sh for more info
 
 ## TO-DO
 
-- Add more options for Anykernel (like devicename etc...)
-- Add an option ignore GCC/Clang warnings
+- Simplification & Improvements in code.
+- I am Still a Learner so will fix mistakes(if any) too.
 
 ## Credits
 
 - @osm0sis for AnyKernel
 - @rebenok90x for https://github.com/rebenok90x/kernel-builder
+
+## Contact info
+Telegram: https://t.me/SiddharthBharadwaj
 
 ### Help & Pull Requests are always Welcome

@@ -15,6 +15,13 @@ if [ "$clone" == "y" ]
 		git clone --progress "$kernelurl" -b "$kernelbranch" kernel
 		echo -e "\e[1;32m Done !!!\e[0m"
 		echo " "
+		if [ ! -d "$sdir/kernel" ]
+then
+	echo "Kernel Source Doesn't Exist. Please Check URL"
+	return 1;
+fi
+clear
+logo
 		echo -e "\e[1;32m ***Cloning Toolchains***\e[0m"
 		cd kernel
 		KERNEL_DIR=`pwd`
@@ -38,7 +45,7 @@ if [ "$clone" == "y" ]
 		. "$sdir"/build.sh
 	elif [ "$clone" == "n" ]
 	then
-		if [ -d "$sdir/kernel" ] 
+		if [ -d "$sdir/kernel" ]
 		then
 		echo -e "\e[1;32m ***Cloning Toolchains***\e[0m"
                 cd kernel
