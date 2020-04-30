@@ -17,16 +17,16 @@ export KBUILD_BUILD_USER="$kbuild_u"
 export KBUILD_BUILD_HOST="$kbuild_h"
 export ARCH="$archf"
 export SUBARCH="$sarchf"
-export CROSS_COMPILE=$KERNEL_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-export CROSS_COMPILE_ARM32=$KERNEL_DIR/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
-PATH=$KERNEL_DIR/clang-llvm/bin/:$KERNEL_DIR/aarch64-linux-android-4.9/bin/:$PATH
+export CROSS_COMPILE=$sdir/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export CROSS_COMPILE_ARM32=$sdir/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+PATH=$sdir/clang-llvm/bin/:$sdir/aarch64-linux-android-4.9/bin/:$PATH
 export PATH
 #-----------------------------------------#
 function check {
    if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
         echo -e "\e[1;32m Build Completed Succesfully\e[0m"
-	echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
+	       echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
    else
        echo -e "\e[0;31m Build failed\e[0m"
    fi
@@ -46,7 +46,7 @@ function ak3 {
 make clean && make mrproper O=out
 BUILD_START=$(date +"%s")
 make  O=out $defconfig_name
-make -j$(nproc --all) CC=$KERNEL_DIR/clang-llvm/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- O=out
+make -j$(nproc --all) CC=$sdir/clang-llvm/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- O=out
 #------#
 BUILD_END=$(date +"%s")
 DIFF=$((BUILD_END - BUILD_START))
@@ -60,14 +60,14 @@ export KBUILD_BUILD_USER="$kbuild_u"
 export KBUILD_BUILD_HOST="kbuild_h"
 export ARCH="$archf"
 export SUBARCH="$sarchf"
-export CROSS_COMPILE=$KERNEL_DIR/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-export CROSS_COMPILE_ARM32=$KERNEL_DIR/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+export CROSS_COMPILE=$sdir/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export CROSS_COMPILE_ARM32=$sdir/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 #-----------------------------------------#
 function check {
    if [ -f $KERNEL_DIR/out/arch/arm64/boot/Image.gz-dtb ] || [ -f $KERNEL_DIR/out/arch/arm/boot/zImage ]
        then
          echo -e "\e[1;32m Build Completed Succesfully\e[0m"
-	echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
+	       echo -e "\e[1;32m Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)\e[0m"
        else
          echo -e "\e[0;31m Build failed\e[0m"
         fi

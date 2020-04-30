@@ -25,6 +25,7 @@ logo
 		echo -e "\e[1;32m ***Cloning Toolchains***\e[0m"
 		cd kernel
 		KERNEL_DIR=`pwd`
+		cd $sdir
 		git clone --progress -j$(nproc --all) --depth 5 --no-single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9.git
 		git clone --progress -j$(nproc --all) --depth 5 --no-single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
 		git clone -j$(nproc --all) --depth 1  https://github.com/osm0sis/AnyKernel3
@@ -50,8 +51,9 @@ logo
 		echo -e "\e[1;32m ***Cloning Toolchains***\e[0m"
                 cd kernel
                 KERNEL_DIR=`pwd`
+								cd $sdir
                 git clone --progress -j$(nproc --all) --depth 5 --no-single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9.git
-		git clone --progress -j$(nproc --all) --depth 5 --no-single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
+								git clone --progress -j$(nproc --all) --depth 5 --no-single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
                 git clone --depth 1 -j$(nproc --all) https://github.com/osm0sis/AnyKernel3
                 if [ "$use_clang" == "y" ]
                 then
