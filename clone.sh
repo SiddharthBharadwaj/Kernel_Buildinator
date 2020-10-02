@@ -57,7 +57,7 @@ logo
                 git clone --depth 1 -j$(nproc --all) https://github.com/osm0sis/AnyKernel3
                 if [ "$use_clang" == "y" ]
                 then
-                git clone -j$(nproc --all) --depth 1 https://github.com/Panchajanya1999/clang-llvm.git -b 8.0
+                git clone -j$(nproc --all) --depth 1 https://github.com/Panchajanya1999/azure-clang
                 elif [ "$use_clang" == "n" ]
                 then
                 echo "Not cloning clang as it was not selected"
