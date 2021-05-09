@@ -35,10 +35,6 @@ logo
 	        then
                 echo "Not cloning clang as it was not selected"
 		fi
-		cd aarch64-linux-android-4.9
-		git reset --hard 22f053ccdfd0d73aafcceff3419a5fe3c01e878b
-		cd $KERNEL_DIR/arm-linux-androideabi-4.9
-		git reset --hard 42e5864a7d23921858ca8541d52028ff88acb2b6
 		cd $KERNEL_DIR
 		echo -e "\e[1;32m Done !!!\e[0m"
 		echo " "
